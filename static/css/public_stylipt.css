@@ -1,0 +1,14 @@
+a{
+    color: #333 !important;    
+}
+a:hover{
+    color:red !important ;
+    text-decoration: none !important ;
+}
+li{
+    list-style: none !important;
+}
+
+ul{
+    margin: 0 !important;
+}
