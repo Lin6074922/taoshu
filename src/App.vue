@@ -1,24 +1,37 @@
 <template>
   <div id="app">
+    <div id="header" class="d-flex">
+      <div>
+        <div class="container">
+          <span >爱书的朋友，欢迎来淘书！</span>
+          <span><a href="javascript:;">请登录</a></span>
+          <span><a href="javascript:;">免费注册</a></span>
+        </div>
+      </div>
 
-    <img src="./assets/logo.png">
-    <router-view/>
+    </div>
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  data() {
+    return {
+      name:'App'  
+    }
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+*{
+  margin: 0;padding: 0;
+}
+#header{
+  background: #f5f5f5;
+}
+#header div:first-child{
+  font-size: .8rem;
 }
 </style>
