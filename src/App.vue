@@ -82,7 +82,6 @@ export default {
       // console.log(to.path);
       this.a=to.path
       this.$router.push({path:to.path})
-      // 上个url地址
       // console.log(from);
     }
   },
@@ -95,9 +94,6 @@ export default {
 }
 #header{
   background: #f5f5f5;
-  padding-top: 0.5rem;
-}
-#header div:first-child{
   font-size: .8rem;
 }
 #header ul{
