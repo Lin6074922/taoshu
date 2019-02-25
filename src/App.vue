@@ -57,17 +57,15 @@
                     <a href="javascript:;" >{{item.name}}</a>
                     <!-- 详细分类 -->
                     <ul :class="num==span?'d-block':'d-none'">
+
                       <!-- 最详细分类 -->
                       <li class="d-flex" v-for="(list,span) of item.children" :key="span" >
                         <p>{{list.name}}</p>
                           <ul class="d-flex ">
                           <li v-for="(li,span) of list.children" :key="span"><a href="javascript:;">{{li.name}}</a></li>
-                          
                         </ul>
                       </li>
-                      
-                      
-                      
+                  
                     </ul>
                   </li>
                   
@@ -255,7 +253,7 @@ export default {
   padding: 0.5rem 0;  
 }
 .classify>div>ul>li>div>ul>li{
-  /* margin: 1rem 0.3rem; */
+  margin: 0.5rem 0;
   padding: 0.5rem 0;
   font-size: 0.8rem;
   color: #333;
@@ -269,7 +267,7 @@ export default {
 /* 详细分类 */
 .classify>div>ul>li>div>ul>li>ul{
   position: absolute;
-  left: 8rem ;
+  left: 7.9rem ;
   top: -.5rem;
   /* padding-top: -1rem; */
   border: 2px solid #546f60;
