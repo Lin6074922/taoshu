@@ -6,8 +6,10 @@ import router from './router'
 
 import "../static/css/public_stylipt.css"
 import "../static/icon/iconfont.css"
+import axios from 'axios'
 Vue.config.productionTip = false
-
+axios.defaults.withCredentials=false
+Vue.prototype.axios=axios
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
