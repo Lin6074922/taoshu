@@ -1,5 +1,5 @@
 a{
-    color: #333 !important;    
+    color: #555 !important;    
 }
 a:hover{
     color:red !important ;
@@ -11,4 +11,7 @@ li{
 
 ul{
     margin: 0 !important;
+}
+.back{
+    background: #f9f9f9;
 }

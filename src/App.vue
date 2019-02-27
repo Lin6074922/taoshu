@@ -85,7 +85,53 @@
 <!-- 显示页面主体 -->
     <router-view></router-view>
 
-    <!-- 底部 -->
+    <!-- 尾部 -->
+    <div class="footer">
+      <!-- 分类导航 -->
+      <div class="d-flex justify-content-center">
+        <div class="text-left" v-for="(item,span) of footclass" :key="span">
+          <h6 class="m-0 text-center"><a href="javascrpt:;">{{item.name}}</a></h6>
+          
+          <ul >
+            <li class="ml-3" v-for="(list,span) of item.children" :key="span"><a href="javascript::">{{list.name}}</a></li>
+          </ul>
+        </div>
+
+        <div class="text-left small">
+          <h6 class="text-center">服务热线</h6>
+          <ul>
+            <li class="m-0">服务时间：周一至周六</li>
+            <li>9:00-18:00</li>
+            <li class="text-danger">400-XXXX-184</li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- 合作单位 -->
+      <div class="container d-flex">
+        <h5>合作单位：</h5>
+        <ul class="d-flex flex-wrap text-center">
+          <li class="small mt-1" v-for="item of cooperation" :key="item.id"><a href="javascript">{{item.cooname}}</a></li>
+        </ul>
+      </div>
+      <!-- 相关事宜 -->
+      <div class="d-flex">
+        <ul class="d-flex justify-content-center">
+          <li><a href="javascript:;">关于淘书</a></li>
+          <li><a href="javascript:;">诚征英才</a></li>
+          <li><a href="javascript:;">节目清单</a></li>
+          <li><a href="javascript:;">网站联盟</a></li>
+          <li><a href="javascript:;">免责条款</a></li>
+          <li><a href="javascript:;">联系我们</a></li>
+          <li><a href="javascript:;">数据API</a></li>
+          <li><a href="javascript:;">友情连接</a></li>
+        </ul>
+        <ul class="d-flex justify-content-center">
+          <li>Copyright © 2012-2015 淘书网 Taoshu.com 版权所有</li>
+          <li><a href="javascript:;">京ICP备12020895号</a> 出版物经营许可证 新出发京零字第朝110069号</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -96,8 +142,10 @@ export default {
       name:'App',
       a:'/',
       classify:[],
+      footclass:[],
+      cooperation:[],
       num:-1,
-      
+      url:"http://127.0.0.1:3000"
     }
   },
   methods: {
@@ -108,17 +156,27 @@ export default {
     none(){
       this.num=-1
     },
-    classIfy(){
-      var url="http://127.0.0.1:3000/classify"
+    getFootclass(){
+      var url=this.url+"/getfootclass"
       this.axios.get(url).then(result=>{
-        console.log(result)
-        this.classify=result.data
+        this.footclass=result.data
+        // console.log(result);
+        
+      })
+    },
+    getCooperation(){
+      var url=this.url+'/getcoo'
+      this.axios.get(url).then(result=>{
+        // console.log(result.data)
+        this.cooperation=result.data
       })
     }
   },
   created() {
     // console.log(this.a)
     this.classIfy()
+    this.getFootclass()
+    this.getCooperation()
     },
   watch: {
     $route(to){
@@ -136,6 +194,7 @@ export default {
 *{
   margin: 0;padding: 0;
 }
+/* 头部 */
 #header{
   background: #f5f5f5;
   font-size: .8rem;
@@ -246,6 +305,7 @@ export default {
   width: 100%;
   left: 0;
   top: 2.8rem;
+  z-index: 100;
 }
 .classify>div>ul>li>div>ul{
   width: 100%;
@@ -257,7 +317,6 @@ export default {
   padding: 0.5rem 0;
   font-size: 0.8rem;
   color: #333;
-  border-radius: 1rem;
   position: relative;
   /* position: relative; */
 }
@@ -267,6 +326,8 @@ export default {
 /* 详细分类 */
 .classify>div>ul>li>div>ul>li>ul{
   position: absolute;
+  z-index: 100;
+  background: #fff;
   left: 7.9rem ;
   top: -.5rem;
   /* padding-top: -1rem; */
@@ -302,5 +363,57 @@ export default {
   margin: 0.3rem .8rem ;
   color: #333;
 }
+/* 尾部 */
+.footer{
+  background: #f5f5f5;
+}
+.footer .text-left{
+  width: 11rem;
+  padding: 0 1.5rem;
+  font-size: 0.6rem;
+}
 
+.footer .text-left h6{
+ padding: 0.5rem 0;
+ border-bottom: 1px solid #9999997d;
+}
+.footer .text-left h6 a{
+ color: #333 !important;
+
+}
+.footer .text-left ul li{
+  margin: 0.5rem 0;
+}
+/* 合作单位 */
+.footer .container{
+  padding: 0.5rem 0.3rem;
+  border: 1px solid #9999997d;
+}
+.footer .container h5{
+  color: #678876;
+  font-weight: 600;
+  width: 10rem;
+}
+.footer .container ul{
+  width: 80rem;
+}
+.footer .container li{
+  margin:0 0.8rem; 
+  text-align: center;
+}
+.footer>div:nth-child(3){
+  padding: 2rem 0;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer>div:nth-child(3) li{
+  border-right: 1px solid #999;
+  margin: 0.5rem 0;
+  font-size: 0.5rem;
+  padding: 0 1rem;
+
+}
+.footer>div:nth-child(3) li:last-child{
+  border: none;
+}
 </style>
